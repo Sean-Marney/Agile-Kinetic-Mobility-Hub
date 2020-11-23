@@ -72,3 +72,18 @@
   flex: 1 100px;
   padding: 30px;
 }
+
+ul {
+list-style: none;
+}
+
+ul li:before {
+content: '✓ ';
+font-size: 24px;
+color: #00BFFF;
+}
+
+.doctorBenefit{
+  font-size: 18px;
+  color: white;
+}
