@@ -26,6 +26,21 @@
     display: inline;
   }
 
+  ul {
+  list-style: none;
+  }
+
+  ul li:before {
+  content: '✓ ';
+  color: #00BFFF;
+  }
+
+  .benefit{
+    font-size: 18px;
+    color: white;
+  }
+
+
 </style>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -56,7 +71,17 @@
     </div>
 
     <div id="benefits" class="d-flex p-2">
-
+      <h1>Benefits</h1>
+      <ul>
+        <li class="benefit">Instant overview with patient monitoring dashboard</li>
+        <li class="benefit">Improve the patient experience with personalised MobilityHub© app for every patient</li>
+        <li class="benefit">Allow patients to recover at their own pace with physiotherapy protocol templates</li>
+        <li class="benefit">Monitor joint mobility with AI range of motion tracking</li>
+        <li class="benefit">Monitor PROMs through daily comfort scores</li>
+        <li class="benefit">Increase opportunities for early intervention with acute symptom reporting</li>
+        <li class="benefit">Collaborate with access for support teams (secretaries/researchers/clinicians)</li>
+        <li class="benefit">Streamline preparation for appraisals/research with exportable data</li>
+      </ul>
     </div>
 
   </body>
