@@ -1,51 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<style>
-
-  #overview{
-    height: 350px;
-  }
-
-  #summary{
-    background-color: #22B2B8;
-    height: 300px;
-  }
-
-  #benefits{
-    background-color: #003B66;
-    height: 400px;
-  }
-
-  #headerLogo{
-    padding:40px;
-    display: inline;
-    width:100%;
-    max-width:327px;
-  }
-
-  .header{
-    display: inline;
-  }
-
-  .link{
-    padding:20px;
-    display:inline;
-    font-family: Arial;
-    font-size: 22px;
-    color: #22B2B8;
-
-  }
-
-  .navbarLinks{
-    text-align: center;
-    align-items: center;
-    float:right;
-    padding-top: 50px;
-    padding-right: 30px;
-  }
-
-</style>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="utf-8">
@@ -56,29 +11,37 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="/static/stylesheets/indexStyle.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="fav.png">
+
   </head>
   <header>
 
     <img src="/static/assets/logo/mainLogo.png" alt="Agile Kinetic Logo" id="headerLogo">
 
-
     <nav class = "navbarLinks">
       <ul>
-        <li class = "link"><a>About Us</a></li>
-        <li class = "link"><a>Support</a></li>
-        <li class = "link"><a>Contact Us</a></li>
+        <li class="link"><a>About Us</a></li>
+        <li class="link"><a>Support</a></li>
+        <li class="link"><a>Contact Us</a></li>
       </ul>
     </nav>
-
-
 
   </header>
   <body>
 
-    <div id="overview" class="d-flex p-2">
-
+    <div id="overview" class="con">
+      <div class="introBlock">
+        <h1 id="introText" class="overviewItem">Improve the patient experience with personalised MobilityHub© app for every patient</h1>
+      </div>
+      <div class="phoneBlock">
+        <img src="/static/assets/app.png" class="overviewItem" alt="MobilityHub App" id="appPreview">
+      </div>
     </div>
+
+
+
+
 
 
     <div id="summary" class="d-flex p-2">

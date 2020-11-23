@@ -1,0 +1,74 @@
+
+#overview{
+  height: 550px;
+}
+
+#summary{
+  background-color: #22B2B8;
+  height: 300px;
+}
+
+#benefits{
+  background-color: #003B66;
+  height: 400px;
+}
+
+#headerLogo{
+  padding:40px;
+  display: inline;
+  width:100%;
+  max-width:327px;
+}
+
+.header{
+  display: inline;
+}
+
+.link{
+  padding:20px;
+  display:inline;
+  font-family: Arial;
+  font-size: 22px;
+  color: #22B2B8;
+}
+
+.navbarLinks{
+  text-align: center;
+  align-items: center;
+  float:right;
+  padding-top: 50px;
+  padding-right: 30px;
+}
+
+#introText{
+  font-family: Arial;
+  color: #003B66;
+  font-size: 60px;
+  align-items: center;
+}
+
+#appPreview{
+  width:100%;
+  max-width:360px;
+  flex-grow: 4;
+}
+
+.con{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.introBlock{
+  flex: 2 400px;
+  padding: 30px;
+  padding-left: 80px;
+  padding-bottom: 100px;
+}
+
+.phoneBlock{
+  flex: 1 100px;
+  padding: 30px;
+}
