@@ -76,7 +76,7 @@ ul {
 list-style: none;
 }
 
-ul li:before {
+ul li.doctorBenefit::before {
 content: '✓ ';
 font-size: 24px;
 color: #00BFFF;
