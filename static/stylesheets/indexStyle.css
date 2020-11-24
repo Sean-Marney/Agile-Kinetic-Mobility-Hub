@@ -101,36 +101,21 @@
   font-family: Arial;
   color: #003B66;
   font-size: 60px;
-  float: right;
+  display:inline-block;
+  max-width: 700px;
+  text-align: left;
+  margin-right: 60px;
 }
 
 #appPreview{
   width:100%;
   max-width:400px;
-  flex-grow: 4;
+  display:inline-block;
 }
 
 .con{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.introBlock{
-  display: inline-block;
-  max-width: 800px;
-  margin: 20px;
-  margin-right: 50px;
-  align-self: auto;
-}
-
-.phoneBlock{
-  display: inline-block;
-  margin-left: 50px;
-  margin: 20px;
-
+  position: relative;
+  text-align: center;
 }
 
 ul {
@@ -149,13 +134,17 @@ color: #00BFFF;
 }
 
 #circleIcon{
-  position: absolute;
   height: 130px;
   left:0;
 }
 
 #croppedIcon1{
-  position: absolute;
   height: 250px;
   right:0;
+}
+
+.icons{
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
 }

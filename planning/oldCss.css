@@ -1,0 +1,22 @@
+.con{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.introBlock{
+  flex: 4 400px;
+  margin: 20px;
+  margin-right: 50px;
+  border: 1px solid black;
+}
+
+.phoneBlock{
+  flex: 1 100px;
+  margin-left: 50px;
+  margin: 20px;
+  border: 1px solid black;
+}
