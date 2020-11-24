@@ -1,3 +1,8 @@
+*{
+  font-family: 'Futura-PT-Book';
+  font-weight:normal;
+  font-style:normal;
+}
 
 #overview{
   height: 550px;
@@ -5,7 +10,7 @@
 
 #summary{
   background-color: #22B2B8;
-  height: 300px;
+  padding: 40px;
 }
 
 #benefits{
@@ -85,7 +90,7 @@
   padding:20px;
   display:inline;
   font-family: Arial;
-  font-size: 22px;
+  font-size: 24px;
   color: #22B2B8;
 }
 
@@ -98,9 +103,6 @@
 }
 
 #introText{
-  font-family: 'Futura-PT-Book';
-  font-weight:normal;
-  font-style:normal;
   color: #003B66;
   font-size: 60px;
   display:inline-block;
@@ -137,17 +139,40 @@ color: #00BFFF;
 }
 
 #circleIcon{
-  height: 130px;
+  height: 140px;
   left:0;
+  top: 10%;
+  margin-top: -10px;
+}
+
+#blob3{
+  height: 180px;
+  left:0;
+  top: 76%;
+  margin-top: -76px;
 }
 
 #croppedIcon1{
-  height: 250px;
+  height: 300px;
   right:0;
+  top: 20%;
+  margin-top: -20px;
 }
 
 .icons{
   position: absolute;
-  top: 50%;
-  margin-top: -50px;
+}
+
+#summaryTitle{
+  font-size: 50px;
+  padding-bottom: 30px;
+}
+
+.summaryText{
+  padding-left: 40px;
+  color: white;
+  font-size: 25px;
+  max-width: 1100px;
+}
+
 }
