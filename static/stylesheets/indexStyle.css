@@ -18,6 +18,64 @@
   width:100%;
   max-width:327px;
 }
+/*MY SECTION BEGIN*/
+#patient-section {
+  background-color: #C9D8E4;
+  display: inline;
+}
+
+.patient-head-div {
+  position: relative;
+  left: 19.5%;
+  margin: 1%;
+  width: 60%;
+}
+
+.patient-head-div h1{
+  color: #22B2B8;
+}
+
+#patient-benefits {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-between;
+  width: 60%;
+}
+
+.patientBenefit {
+   width: 25%;
+   margin: .5em;
+   border: 1px solid  #5280A3;
+   border-radius: 5px;
+   background-color:  #FCFDFD ;
+}
+
+.patientBenefit > p {
+  margin: 2px auto;
+  padding: 2px;
+  width: 90%;
+  text-align: center;
+}
+
+.icon-p-below {
+  padding-top: 5px;
+}
+
+.icon-div {
+  margin: 8px;
+  padding-top: 2px;
+  text-align: center;
+}
+
+/*.circle-icon-div img {
+   width: 10%;
+   transform:rotate(25deg);
+   transform: translateY(-5%);
+}*/
+
+/*END*/
 
 .header{
   display: inline;
@@ -79,7 +137,7 @@ ul {
 list-style: none;
 }
 
-ul li:before {
+ul li.doctorBenefit::before {
 content: '✓ ';
 font-size: 24px;
 color: #00BFFF;
