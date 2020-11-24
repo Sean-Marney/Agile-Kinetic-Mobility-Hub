@@ -24,20 +24,22 @@
   max-width:327px;
 }
 /*MY SECTION BEGIN*/
-#patient-section {
-  background-color: #C9D8E4;
-  display: inline;
+
+.patient-section {
+  background-image: url("/static/assets/icons/happy_patient.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center calc(100%-15px) ;
+  display: inline-block;
 }
 
 .patient-head-div {
-  position: relative;
-  left: 19.5%;
-  margin: 1%;
-  width: 60%;
-}
 
-.patient-head-div h1{
-  color: #22B2B8;
+  margin-top: 1%;
+  margin-left: 6.5vw;
+  margin-right: 0;
+  width: 60%;
+  color: white;
 }
 
 #patient-benefits {
@@ -52,9 +54,12 @@
 .patientBenefit {
    width: 25%;
    margin: .5em;
-   border: 1px solid  #5280A3;
+   border: 1px solid  #003B66;
    border-radius: 5px;
-   background-color:  #FCFDFD ;
+   background-color:  rgba(253, 254, 254, 0.5) ;
+   box-shadow: 0 0 5px;
+   overflow-x: hidden;
+   overflow-y: hidden;
 }
 
 .patientBenefit > p {
@@ -65,7 +70,8 @@
 }
 
 .icon-p-below {
-  padding-top: 5px;
+  padding-top: 3px;
+  font-weight: 400;
 }
 
 .icon-div {
@@ -74,13 +80,50 @@
   text-align: center;
 }
 
-/*.circle-icon-div img {
-   width: 10%;
-   transform:rotate(25deg);
-   transform: translateY(-5%);
-}*/
+.icon-p-above {
+  width: 100%;
+  font-weight: 600;
+  color: #003B66;
+  font-size: 20px;
+}
 
-/*END*/
+/* FIGURING OUT HOW TO FIX BCKGROUND IMAGE ISSUE
+@media screen and (min-width: 1200px) {
+    #patient-section {
+      background-position: center calc(100% + 400px);
+    background-size: cover;
+    }
+  }*/
+
+@media  screen and (max-width: 767px) {
+
+  .patient-head-div {
+    color: #003B66;
+  }
+
+  #patient-section {
+    background-color: #F5F8FA;
+    background-image: none;
+  }
+
+  .patientBenefit{
+    background-color: #FAFBFC;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #patient-benefits {
+    flex-direction: column;
+
+  }
+  .patientBenefit {
+    width: 100%;
+    margin: 2% auto;
+    box-shadow: 2px 2px 5px;
+
+  }
+}
+
 
 .header{
   display: inline;
@@ -174,6 +217,9 @@ color: #00BFFF;
   font-size: 25px;
   max-width: 1100px;
 }
+<<<<<<< Updated upstream
 
 
 }
+=======
+>>>>>>> Stashed changes
