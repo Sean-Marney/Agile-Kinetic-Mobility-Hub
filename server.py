@@ -14,22 +14,34 @@ app = Flask(__name__)
 def index():
     return redirect("/static/index.html", code=302)
 
-@app.route("/contact", methods=['POST'])
+@app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+@app.route("/blog")
+def blog():
+    if request.method =='GET':
+        return redirect("/static/blog.html", code=302)
 
 @app.route("/blog/management", methods = ['POST','GET'])
 def addBlogPost():
     if request.method =='GET':
-        return redirect("/static/addBlogPost.html", code=302)
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        query = "SELECT * FROM tblBlogPosts"
+        cur.execute(query)
+        data = cur.fetchall()
+        conn.close()
+        return render_template('blogManagement.html', data=data)
     if request.method =='POST':
+        title = request.form.get('title', default="Error")
         message = request.form.get('message', default="Error")
         print("Inserting new blog post...")
         try:
             connection = sqlite3.connect(DATABASE)
             cursor = connection.cursor()
             today = date.today()
-            cursor.execute("INSERT INTO tblBlogPosts ('date', 'message') VALUES (?,?)",(today.strftime("%d/%m/%Y"), message))
+            cursor.execute("INSERT INTO tblBlogPosts ('date', 'title', 'message') VALUES (?,?,?)",(today.strftime("%d/%m/%Y"), title, message))
             connection.commit()
             print("Insertion Successful.")
             outputMessage = "Blog post added successfully"

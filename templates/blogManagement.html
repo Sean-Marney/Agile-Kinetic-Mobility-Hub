@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <style>
+
+    #titleBar{
+      background-color: #22B2B8;
+      text-align: center;
+      color: white;
+      padding: 10px;
+      font-size: 20px;
+    }
+
+    .widget{
+      background-color: #22B2B8;
+      border-radius: 5px;
+      margin: 10px;
+      width:auto;
+      color: white;
+      display: inline-block;
+    }
+
+    #addBlogPost{
+      padding-left: 20px;
+      padding-right: 25px;
+      padding-bottom: 20px;
+    }
+
+    #addPostButton{
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #titleInput{
+      width: 50%;
+    }
+
+    h2{
+      padding-left: 20px;
+      padding-top: 20px;
+      font-size: 25px;
+    }
+
+    #existingPosts{
+      padding: 10px;
+      vertical-align:top;
+    }
+
+    #messageColumn{
+      column-width: 800px;
+    }
+
+    table{
+      border: 1px solid white;
+    }
+
+    table{
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+
+  </style>
+
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link href="/static/fonts/futura-pt-book/stylesheet.css" rel="stylesheet">
+    <title></title>
+  </head>
+
+  <header>
+    <div id="nav-placeholder"></div>
+    <div id="titleBar">
+      <h1>Blog Management</h1>
+    <div>
+  </header>
+
+  <body>
+    <div id="newBlogPost" class="widget">
+      <h2>Add a new blog post</h2>
+      <form id='addBlogPost' onsubmit="return loadPost()">
+        <label>Title: <input type = "text" name = "title" id="titleInput"><br></label><br>
+        <textarea name="message" rows="5" cols="65"></textarea><br>
+        <button id="addPostButton" type = "submit"> Add Post </button>
+      </form>
+      <span id='txt'></span>
+    </div>
+
+
+    <div id="existingPosts" class="widget">
+      <h2>Exisitng Posts</h2>
+      {%block mainBlock%}
+      <table>
+         <thead>
+            <td>ID</td>
+            <td>Date</td>
+            <td>Title</td>
+            <td id="messageColumn">Message</td>
+         </thead>
+
+         {% for row in data %}
+            <tr>
+              <td>{{row[0]}}</td>
+              <td>{{row[1]}}</td>
+              <td>{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+            </tr>
+         {% endfor %}
+      </table>
+      {%endblock%}
+    </div>
+  </body>
+
+  <script>
+  $(function(){
+    $("#nav-placeholder").load("/static/navBar.html");
+  });
+  </script>
+
+  <script>
+    function loadPost() {
+      var title = document.forms["addBlogPost"]["title"].value;
+      var message = document.forms["addBlogPost"]["message"].value;
+      params = 'title='+title+'&message='+message;
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", '/blog/management', true); // true is asynchronous
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onload = function() {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+          console.log(xhttp.responseText);
+          document.getElementById("txt").innerHTML = xhttp.responseText;
+        } else {
+          console.error(xhttp.statusText);
+        }
+      };
+      xhttp.send(params);
+      return false;
+    }
+
+  </script>
+</html>
