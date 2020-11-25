@@ -17,12 +17,6 @@
   background-color: #003B66;
 }
 
-#headerLogo{
-  padding:40px;
-  display: inline;
-  width:100%;
-  max-width:327px;
-}
 /*MY SECTION BEGIN*/
 
 .patient-section {
@@ -122,27 +116,6 @@
     box-shadow: 2px 2px 5px;
 
   }
-}
-
-
-.header{
-  display: inline;
-}
-
-.link{
-  padding:20px;
-  display:inline;
-  font-family: Arial;
-  font-size: 24px;
-  color: #22B2B8;
-}
-
-.navbarLinks{
-  text-align: center;
-  align-items: center;
-  float:right;
-  padding-top: 50px;
-  padding-right: 30px;
 }
 
 #introText{

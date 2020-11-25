@@ -2,13 +2,20 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link href="/static/fonts/futura-pt-book/stylesheet.css" rel="stylesheet">
     <title>Blog</title>
   </head>
+  <header>
+    <div id="nav-placeholder"></div>
+  </header>
   <body>
 
   </body>
 
   <script>
-
+  $(function(){
+    $("#nav-placeholder").load("navBar.html");
+  });
   </script>
 </html>

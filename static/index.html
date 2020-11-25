@@ -17,17 +17,7 @@
 
   </head>
   <header>
-
-    <img src="/static/assets/logo/mainLogo.png" alt="Agile Kinetic Logo" id="headerLogo">
-
-    <nav class = "navbarLinks">
-      <ul>
-        <li class="link"><a>Blog</a></li>
-        <li class="link"><a>Support</a></li>
-        <li class="link"><a>Contact Us</a></li>
-      </ul>
-    </nav>
-
+    <div id="nav-placeholder"></div>
   </header>
   <body>
 
@@ -104,6 +94,12 @@
         </div>
       </div>
     </section>
-
   </body>
+
+  <script>
+  $(function(){
+    $("#nav-placeholder").load("navBar.html");
+  });
+  </script>
+
 </html>

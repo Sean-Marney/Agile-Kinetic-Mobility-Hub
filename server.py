@@ -18,10 +18,10 @@ def index():
 def contact():
     return render_template("contact.html")
 
-@app.route("/blog/AddBlogPost", methods = ['POST','GET'])
+@app.route("/blog/management", methods = ['POST','GET'])
 def addBlogPost():
     if request.method =='GET':
-        return render_template("blogPost.html")
+        return redirect("/static/addBlogPost.html", code=302)
     if request.method =='POST':
         message = request.form.get('message', default="Error")
         print("Inserting new blog post...")
