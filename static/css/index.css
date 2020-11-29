@@ -8,11 +8,9 @@
   height:75vh;
 }
 
-
-
 #summary{
   background-color: #22B2B8;
-  padding: 40px;
+  height:54vh;
 }
 
 #benefits{
@@ -119,7 +117,6 @@
   }
 }
 
-
 #introText{
   color: #003B66;
   margin-left: 17%;
@@ -137,6 +134,56 @@
   padding-top: 1%;
 }
 
+#mobilityHubLogo{
+  float: right;
+  position: absolute;
+  right: 0;
+  width: 9%;
+  margin-right: 5%;
+  margin-top: 1%;
+}
+
+
+#summaryTitle{
+  padding-bottom: 30px;
+  font-size: 3vw;
+}
+
+.summaryText{
+  font-size: 1.5vw;
+}
+
+#summaryTitleAndText{
+  color: white;
+  font-size: 25px;
+  max-width: 50%;
+  float:left;
+  margin-left: 4%;
+  margin-top: 4%;
+}
+
+#downloadButtons{
+  width: 36%;
+  float:right;
+  margin-right: 5%;
+  margin-top: 0.9%
+}
+
+.downloadButton{
+  background-color: #FFAC00;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  text-align: left;
+  font-size: 1.5vw;
+  display: block;
+}
+
+#downloadAppIOS{
+  margin-bottom: 2%;
+}
 
 ul {
 list-style: none;
@@ -176,17 +223,8 @@ color: #00BFFF;
   position: absolute;
 }
 
-#summaryTitle{
-  font-size: 50px;
-  padding-bottom: 30px;
-}
 
-.summaryText{
-  padding-left: 40px;
-  color: white;
-  font-size: 25px;
-  max-width: 1100px;
-}
+
 <<<<<<< Updated upstream
 
 
