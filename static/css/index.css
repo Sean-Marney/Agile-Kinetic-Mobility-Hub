@@ -8,12 +8,12 @@
 }
 
 #overview{
-  height: 550px;
+  height:75vh;
 }
 
 #summary{
   background-color: #22B2B8;
-  padding: 40px;
+  height:54vh;
 }
 
 #benefits{
@@ -31,8 +31,12 @@
   width: 100%;
 }
 
+<<<<<<< HEAD
 
 #patient-section h1 {
+=======
+.patient-head-div {
+>>>>>>> 792e974ab080343309dc23ceef0e94fd2154badf
   margin-top: 1%;
   margin-left: 10%;
   margin-right: 0;
@@ -124,23 +128,70 @@
 
 #introText{
   color: #003B66;
-  font-size: 60px;
-  display:inline-block;
-  max-width: 700px;
-  text-align: left;
-  margin-right: 80px;
+  margin-left: 17%;
+  width:35%;
+  font-size: 3vw;
+  float:left;
+  padding-top: 8%;
+  margin-bottom: 10%
 }
 
 #appPreview{
-  width:100%;
-  max-width:400px;
-  display:inline-block;
-  margin-left: 80px;
+  margin-right: 17%;
+  float:right;
+  width: 25%;
+  padding-top: 1%;
 }
 
-.con{
-  position: relative;
-  text-align: center;
+#mobilityHubLogo{
+  float: right;
+  position: absolute;
+  right: 0;
+  width: 9%;
+  margin-right: 5%;
+  margin-top: 1%;
+}
+
+
+#summaryTitle{
+  padding-bottom: 30px;
+  font-size: 3vw;
+}
+
+.summaryText{
+  font-size: 1.5vw;
+}
+
+#summaryTitleAndText{
+  color: white;
+  font-size: 25px;
+  max-width: 50%;
+  float:left;
+  margin-left: 4%;
+  margin-top: 4%;
+}
+
+#downloadButtons{
+  width: 36%;
+  float:right;
+  margin-right: 5%;
+  margin-top: 0.9%
+}
+
+.downloadButton{
+  background-color: #FFAC00;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  text-align: left;
+  font-size: 1.5vw;
+  display: block;
+}
+
+#downloadAppIOS{
+  margin-bottom: 2%;
 }
 
 ul {
@@ -159,41 +210,30 @@ color: #00BFFF;
 }
 
 #circleIcon{
-  height: 140px;
+  width: 5%;
   left:0;
-  top: 10%;
-  margin-top: -10px;
+  top: 25%;
+  margin-top: -20px;
 }
 
 #blob3{
-  height: 180px;
+  width: 8%;
   left:0;
-  top: 76%;
-  margin-top: -76px;
+  top: 70%;
 }
 
 #croppedIcon1{
-  height: 300px;
+  width: 7%;
   right:0;
-  top: 20%;
-  margin-top: -20px;
+  top: 35%;
 }
 
 .icons{
   position: absolute;
 }
 
-#summaryTitle{
-  font-size: 50px;
-  padding-bottom: 30px;
-}
 
-.summaryText{
-  padding-left: 40px;
-  color: white;
-  font-size: 25px;
-  max-width: 1100px;
-}
+
 <<<<<<< Updated upstream
 
 
