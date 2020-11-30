@@ -1,3 +1,6 @@
+
+
+
 *{
   font-family: 'Futura-PT-Book';
   font-weight:normal;
@@ -25,14 +28,19 @@
   background-repeat: no-repeat;
   background-position: center calc(100%-15px) ;
   display: inline-block;
+  width: 100%;
 }
 
-.patient-head-div {
+
+#patient-section h1 {
+
   margin-top: 1%;
-  margin-left: 6.5vw;
+  margin-left: 10%;
   margin-right: 0;
-  width: 60%;
+  width: 20%;
   color: white;
+  text-align: left;
+
 }
 
 #patient-benefits {
@@ -43,6 +51,7 @@
   align-content: space-between;
   width: 60%;
 }
+
 
 .patientBenefit {
    width: 25%;
@@ -80,17 +89,11 @@
   font-size: 20px;
 }
 
-/* FIGURING OUT HOW TO FIX BCKGROUND IMAGE ISSUE
-@media screen and (min-width: 1200px) {
-    #patient-section {
-      background-position: center calc(100% + 400px);
-    background-size: cover;
-    }
-  }*/
+
 
 @media  screen and (max-width: 767px) {
 
-  .patient-head-div {
+  #patient-section h1 {
     color: #003B66;
   }
 
@@ -115,7 +118,10 @@
     box-shadow: 2px 2px 5px;
 
   }
+
 }
+
+
 
 #introText{
   color: #003B66;
