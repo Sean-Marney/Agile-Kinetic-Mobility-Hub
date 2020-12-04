@@ -17,12 +17,7 @@
       width:auto;
       color: white;
       display: inline-block;
-    }
-
-    #addBlogPost{
-      padding-left: 20px;
-      padding-right: 25px;
-      padding-bottom: 20px;
+      padding: 20px;
     }
 
     #addPostButton{
@@ -35,14 +30,11 @@
     }
 
     h2{
-      padding-top: 5%;
-      padding-bottom: 2%;
       font-size: 2.5vw;
       text-align: center;
     }
 
     #existingPosts{
-      padding: 10px;
       vertical-align:top;
       max-width: 50%;
     }
@@ -73,15 +65,23 @@
   <header>
     <div id="nav-placeholder"></div>
     <div id="titleBar">
-      <h1>Blog Management</h1>
+      <h1>Site management</h1>
     <div>
   </header>
 
   <body>
     <div id="newBlogPost" class="widget">
       <h2>Add a new blog post</h2>
+
+      <form id="uploadImage" method=post enctype=multipart/form-data>
+        <label>Image: </label>
+        <input type=file name=file id="fileInput">
+        <button id="uploadFileButton" type="button">Upload</button>
+        <span id='uploadMessage'></span>
+      </form>
+
       <form id='addBlogPost' onsubmit="return loadPost()">
-        <label>Title: <input type = "text" name = "title" id="titleInput"><br></label><br>
+        <br><label>Title: <input type = "text" name = "title" id="titleInput"><br></label><br>
         <textarea name="message" rows="5" cols="65"></textarea><br>
         <button id="addPostButton" type = "submit"> Add Post </button>
       </form>
@@ -121,9 +121,11 @@
 
   <script>
     function loadPost() {
+
+      var image = document.forms["uploadImage"]["fileInput"].files.item(0).name;
       var title = document.forms["addBlogPost"]["title"].value;
       var message = document.forms["addBlogPost"]["message"].value;
-      params = 'title='+title+'&message='+message;
+      params = 'title='+title+'&message='+message+'&image='+image;
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", '/blog/management', true); // true is asynchronous
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -138,6 +140,26 @@
       xhttp.send(params);
       return false;
     }
+  </script>
+
+  <script>
+
+      $(function() {
+        $('#uploadFileButton').click(function() {
+            var form_data = new FormData($('#uploadImage')[0]);
+            $.ajax({
+                type: 'POST',
+                url: '/blog/management/media',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    document.getElementById("uploadMessage").innerHTML = "Upload Complete";
+                },
+            });
+        });
+    });
 
   </script>
 </html>
