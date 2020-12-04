@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <style>
+    #messageColumn{
+      column-width: 800px;
+    }
+
+    .postsParent{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .blogPost{
+      width: 300px;
+      background-color: #F1F5F8;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .blogPostTitle{
+      font-size: 30px;
+      padding: 0px;
+      margin: 0px;
+    }
+
+  </style>
+
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link href="/static/fonts/futura-pt-book/stylesheet.css" rel="stylesheet">
+    <title>Blog</title>
+  </head>
+  <header>
+    <div id="nav-placeholder"></div>
+  </header>
+  <body>
+    <div class="postsParent">
+      {%block mainBlock%}
+      {% for row in data %}
+        <div class="blogPost">
+          <p class="blogPostTitle">{{row[2]}}</p>
+          {{row[1]}}<br><br>
+          {{row[3]}}
+        </div>
+      {% endfor %}
+      {%endblock%}
+    </div>
+  </body>
+
+  <script>
+  $(function(){
+    $("#nav-placeholder").load("/static/navBar.html");
+  });
+  </script>
+</html>

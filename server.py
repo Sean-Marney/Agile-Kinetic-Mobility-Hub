@@ -21,7 +21,13 @@ def contact():
 @app.route("/blog")
 def blog():
     if request.method =='GET':
-        return redirect("/static/blog.html", code=302)
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        query = "SELECT * FROM tblBlogPosts"
+        cur.execute(query)
+        data = cur.fetchall()
+        conn.close()
+        return render_template('blog.html', data=data)
 
 @app.route("/blog/management", methods = ['POST','GET'])
 def addBlogPost():
