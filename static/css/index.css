@@ -1,6 +1,3 @@
-
-
-
 *{
   font-family: 'Futura-PT-Book';
   font-weight:normal;
@@ -13,7 +10,7 @@
 
 #summary{
   background-color: #22B2B8;
-  height:54vh;
+  height:64vh;
 }
 
 #benefits{
@@ -242,6 +239,7 @@ color: #00BFFF;
 .icons{
   position: absolute;
 }
+
 
 
 
