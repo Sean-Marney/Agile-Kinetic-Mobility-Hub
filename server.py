@@ -63,6 +63,29 @@ def addBlogPost():
             connection.close()
             return outputMessage
 
+
+@app.route("/blog/management/delete", methods = ['POST','GET'])
+def deleteBlogPost():
+    if request.method =='POST':
+        id = request.form.get('id', default="Error")
+        print("Delete blog post...")
+        try:
+            connection = sqlite3.connect(DATABASE)
+            cursor = connection.cursor()
+            today = date.today()
+            cursor.execute("DELETE FROM tblBlogPosts WHERE id=?",[id])
+            connection.commit()
+            print("Delete successful")
+            outputMessage = "Blog post deleted successfully"
+        except Exception as e:
+            connection.rollback()
+            print("Deletion of blog post failed, rollback requested: " + str(e))
+            outputMessage = "Failed to delete blog post"
+        finally:
+            connection.close()
+            return outputMessage
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
