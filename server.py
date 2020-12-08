@@ -117,5 +117,45 @@ def addBlogImage():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
+    #ALAN'S STUFF#########################################################
+
+@app.route("/benefit/management", methods = ['POST', 'GET'])
+def addBenefit():
+    #SEND FORM DATA TO WEBPAGE TO BE DYNAMICALLY RENDERED
+    if request.method =='GET':
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        query = "SELECT * FROM tblBenefits"
+        cur.execute(query)
+        data = cur.fetchall()
+        conn.close()
+        return data #CHECK NECESSARY
+
+
+
+    #POST SECTION OF ROUTE WORKING
+    if request.method =='POST':
+        benTitle = request.form.get('title', default="Error")
+        benMessage = request.form.get('message', default="Error")
+        benImage = request.form.get('image', default="Error")
+        print("Adding new benefit...")
+        try:
+            connection = sqlite3.connect(DATABASE)
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO tblBenefits ('title', 'message', 'image') VALUES (?,?,?)", (benTitle, benMessage, benImage))
+            connection.commit()
+            print("Benefit added to database successfully.")
+            outputMessage = "Patient benefit added successfully"
+        except Exception as e:
+            connection.rollback()
+            print("Falied to add paient benefit, rollback requested: " + str(e))
+            outputMessage = "Failed to add new benefit"
+        finally:
+            connection.close()
+            return outputMessage
+
+
+    #END#######################################################################
+
 if __name__ == "__main__":
     app.run(debug=True)

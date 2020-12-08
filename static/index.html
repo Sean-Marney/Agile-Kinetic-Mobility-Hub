@@ -85,7 +85,7 @@
 
       <section id = "patient-section" class="patient-section">
         <h1>Patients</h1>
-        <div id="patient-benefits" class="d-flex p-2">
+        <div id="patient-benefits" onload=" loadBenefit()"> <!--ONLOAD FUNCTION ADDED READY FOR WHEN AJAX ROUTE COMPLETE-->
           <div class = "patientBenefit" id="patient-benefit-first">
              <div class="icon-div">
                <img src="assets/icons/Symptom reporting.svg" alt="">
@@ -125,6 +125,8 @@
     $("#nav-placeholder").load("navBar.html");
     $("#footer-placeholder").load("footer.html");
   });
+
   </script>
+
 
 </html>

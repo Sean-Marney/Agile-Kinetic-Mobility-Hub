@@ -21,7 +21,7 @@
 /*MY SECTION BEGIN*/
 
 .patient-section {
-  background-image: url("/static/assets/icons/happy_patient.jpg");
+  background-image: url("/static/assets/icons/patient.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center calc(100%-15px) ;
@@ -36,7 +36,7 @@
   margin-left: 10%;
   margin-right: 0;
   width: 20%;
-  color: white;
+  color: #003B66;
   text-align: left;
 
 }
@@ -90,10 +90,6 @@
 
 
 @media  screen and (max-width: 767px) {
-
-  #patient-section h1 {
-    color: #003B66;
-  }
 
   #patient-section {
     background-color: #F5F8FA;
