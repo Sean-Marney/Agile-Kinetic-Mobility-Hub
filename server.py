@@ -5,12 +5,23 @@ from flask import Flask, redirect, request,render_template, jsonify, send_from_d
 from datetime import date
 from werkzeug.utils import secure_filename
 
+#constants
 UPLOAD_FOLDER = 'uploads'
 DATABASE = "agileKinetic.db"
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'svg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+#returns blog posts from database
+def getBlogPosts():
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    query = "SELECT * FROM tblBlogPosts"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    connection.close()
+    return data
 
 @app.route("/")
 def index():
@@ -21,27 +32,19 @@ def index():
 def contact():
     return render_template("contact.html")
 
+#renders blog posts page
 @app.route("/blog")
 def blog():
     if request.method =='GET':
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "SELECT * FROM tblBlogPosts"
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-        return render_template('blog.html', data=data)
+        return render_template('blog.html', data=getBlogPosts())
 
 @app.route("/blog/management", methods = ['POST','GET'])
-def addBlogPost():
+def blogPosts():
     if request.method =='GET':
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "SELECT * FROM tblBlogPosts"
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-        return render_template('blogManagement.html', data=data)
+        return render_template('blogManagement.html', data=getBlogPosts())
+
+@app.route("/blog/management/add", methods = ['POST','GET'])
+def addBlogPost():
     if request.method =='POST':
         title = request.form.get('title', default="Error")
         message = request.form.get('message', default="Error")
@@ -85,6 +88,10 @@ def deleteBlogPost():
             connection.close()
             return outputMessage
 
+#code to upload file to server
+#amended from Flask Documentation
+#accessed 05/12/2020
+#https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -92,7 +99,6 @@ def allowed_file(filename):
 
 @app.route("/blog/management/media", methods = ['POST','GET'])
 def addBlogImage():
-    #Amended from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -111,51 +117,12 @@ def addBlogImage():
             basedir = os.path.abspath(os.path.dirname(__file__))
             file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
             return "Success"
-    #End of amendments
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
 
-    #ALAN'S STUFF#########################################################
-
-@app.route("/benefit/management", methods = ['POST', 'GET'])
-def addBenefit():
-    #SEND FORM DATA TO WEBPAGE TO BE DYNAMICALLY RENDERED
-    if request.method =='GET':
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "SELECT * FROM tblBenefits"
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-        return data #CHECK NECESSARY
-
-
-
-    #POST SECTION OF ROUTE WORKING
-    if request.method =='POST':
-        benTitle = request.form.get('title', default="Error")
-        benMessage = request.form.get('message', default="Error")
-        benImage = request.form.get('image', default="Error")
-        print("Adding new benefit...")
-        try:
-            connection = sqlite3.connect(DATABASE)
-            cursor = connection.cursor()
-            cursor.execute("INSERT INTO tblBenefits ('title', 'message', 'image') VALUES (?,?,?)", (benTitle, benMessage, benImage))
-            connection.commit()
-            print("Benefit added to database successfully.")
-            outputMessage = "Patient benefit added successfully"
-        except Exception as e:
-            connection.rollback()
-            print("Falied to add paient benefit, rollback requested: " + str(e))
-            outputMessage = "Failed to add new benefit"
-        finally:
-            connection.close()
-            return outputMessage
-
-
-    #END#######################################################################
+#End of amended code
 
 if __name__ == "__main__":
     app.run(debug=True)
