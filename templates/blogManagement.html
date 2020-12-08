@@ -126,7 +126,7 @@
         var message = document.forms["addBlogPost"]["message"].value;
         params = 'title='+title+'&message='+message+'&image='+image;
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", '/blog/management', true); // true is asynchronous
+        xhttp.open("POST", '/blog/management/add', true); // true is asynchronous
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.onload = function() {
           if (xhttp.readyState === 4 && xhttp.status === 200) {

@@ -5,6 +5,7 @@ from flask import Flask, redirect, request,render_template, jsonify, send_from_d
 from datetime import date
 from werkzeug.utils import secure_filename
 
+#constants
 UPLOAD_FOLDER = 'uploads'
 DATABASE = "agileKinetic.db"
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'svg'])
@@ -12,6 +13,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'svg'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+#returns blog posts from database
 def getBlogPosts():
     connection = sqlite3.connect(DATABASE)
     cursor = connection.cursor()
@@ -30,15 +32,19 @@ def index():
 def contact():
     return render_template("contact.html")
 
+#renders blog posts page
 @app.route("/blog")
 def blog():
     if request.method =='GET':
         return render_template('blog.html', data=getBlogPosts())
 
 @app.route("/blog/management", methods = ['POST','GET'])
-def addBlogPost():
+def blogPosts():
     if request.method =='GET':
         return render_template('blogManagement.html', data=getBlogPosts())
+
+@app.route("/blog/management/add", methods = ['POST','GET'])
+def addBlogPost():
     if request.method =='POST':
         title = request.form.get('title', default="Error")
         message = request.form.get('message', default="Error")
@@ -82,6 +88,10 @@ def deleteBlogPost():
             connection.close()
             return outputMessage
 
+#code to upload file to server
+#amended from Flask Documentation
+#accessed 05/12/2020
+#https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -89,7 +99,6 @@ def allowed_file(filename):
 
 @app.route("/blog/management/media", methods = ['POST','GET'])
 def addBlogImage():
-    #Amended from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -108,11 +117,12 @@ def addBlogImage():
             basedir = os.path.abspath(os.path.dirname(__file__))
             file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
             return "Success"
-    #End of amendments
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+
+#End of amended code
 
 if __name__ == "__main__":
     app.run(debug=True)
