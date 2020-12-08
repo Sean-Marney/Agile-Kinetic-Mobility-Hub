@@ -124,5 +124,42 @@ def uploaded_file(filename):
 
 #End of amended code
 
+
+#ALAN########################
+@app.route("/benefit/management", methods = ['POST'])
+def addBenefit():
+    if request.method =='GET':
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        query = "SELECT * FROM tblBenefits"
+        cur.execute(query)
+        data = cur.fetchall()
+        conn.close()
+
+
+    #POST SECTION OF ROUTE WORKING ACCORDING TO MY TEST
+    if request.method =='POST':
+        benTitle = request.form.get('title', default="Error")
+        benMessage = request.form.get('message', default="Error")
+        benImage = request.form.get('image', default="Error") # TEST WITH ICON
+        print("Adding new benefit...")
+        try:
+            connection = sqlite3.connect(DATABASE)
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO tblBenefits ('title', 'message', 'image') VALUES (?,?,?)", (benTitle, benMessage, benImage))
+            connection.commit()
+            print("Insertion Successful.")
+            outputMessage = "Patient benefit added successfully"
+        except Exception as e:
+            connection.rollback()
+            print("Falied to add paient benefit, rollback requested: " + str(e))
+            outputMessage = "Failed to add new benefit"
+        finally:
+            connection.close()
+            return outputMessage
+
+############################################
+
+
 if __name__ == "__main__":
     app.run(debug=True)
