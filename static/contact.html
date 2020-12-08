@@ -22,23 +22,26 @@
             <div class="information">
               <li>Agile Kinetic Phone Placeholder</li>
             </div>
+            <div class="social-media">
+              <h3 class="social-title">Follow us on social media!</h3>
+              <div class="facebook-btn">
+                <button id="redirect-facebook">Facebook</button>
+              </div>
+              <div class="twitter-btn">
+                <button id="redirect-twitter">Twitter</button>
+              </div>
+
+              <script>
+                document.querySelector('#redirect-facebook')
+                .addEventListener('click', () => {
+                  window.location.href = 'https://www.facebook.com/AgileKinetic';
+                });
+                document.querySelector('#redirect-twitter')
+                .addEventListener('click', () => {
+                  window.location.href = 'https://twitter.com/agilekinetic';
+                });
+              </script>
           </div>
-          <div class="social-media">
-            <h3>Follow us on social media!</h3>
-            <button id="redirect-facebook">Facebook</button>
-            <button id="redirect-twitter">Twitter</button>
-
-            <script>
-              document.querySelector('#redirect-facebook')
-              .addEventListener('click', () => {
-                window.location.href = 'https://www.facebook.com/AgileKinetic';
-              });
-              document.querySelector('#redirect-twitter')
-              .addEventListener('click', () => {
-                window.location.href = 'https://twitter.com/agilekinetic';
-              });
-            </script>
-
           </div>
         </div>
         <div class="contact-form">

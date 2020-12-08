@@ -115,3 +115,29 @@ textarea.input{
   padding-left: 20px;
   font-size: 2rem;
 }
+
+.social-title{
+  font-size: 1.75rem;
+  margin: auto;
+  width: 50%;
+  padding-top:20px;
+  font-weight: 500;
+  color: #555;
+}
+
+.social-media{
+  border-top: 2px solid;
+}
+
+.facebook-btn{
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+  width: 20;
+}
+
+.twitter-btn{
+  padding: 10px;
+  width: 50%;
+  margin: auto;
+}
