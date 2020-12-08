@@ -113,12 +113,35 @@
       {%endblock%}
     </div>
 
+    <!-- ALAN'S STUFF -->
+
+    <div id="newBenefit" class="widget">
+      <h2>Add a patient benefit </h2>
+
+      <form id="benefitImageUpload" method=post enctype=multipart/form-data>
+        <label>Image: </label>
+        <input type=file name=file id="benefitInput">
+        <button id="benefitUploadFileButton" type="button">Upload</button>
+        <span id='uploadBenefit'></span>
+      </form>
+
+      <form id='addBenefit' onsubmit="return loadBenefit()">
+        <br><label>Title: <input type = "text" name = "benefitTitle" id="benefitTitleInput"><br></label><br>
+        <textarea name="benefitMessage" rows="5" cols="65"></textarea><br>
+        <button id="addBenefitPostButton" type = "submit"> Add Benefit </button>
+      </form>
+      <span id='benefitTxt'></span>
+
+    <!-- END-->
+
     <script>
     $(function(){
       $("#nav-placeholder").load("/static/navBar.html");
     </script>
 
-  <!-- wills above-->
+
+
+
 
     <script>
       function loadPost() {
@@ -182,6 +205,38 @@
         return false;
       }
     </script>
+
+    <!--alans-->
+
+    <script>
+  //Ajax request sending benefit form data to server WORKING
+    function sendBenefit() {
+      var benImage = document.forms["benefitImageUpload"]["benefitInput"].files.item(0).name;
+      var benTitle = document.forms["addBenefit"]["benefitTitle"].value;
+      var benMessage = document.forms["addBenefit"]["benefitMessage"].value;
+      benParams = 'title='+benTitle+'&message='+benMessage+'&image='+benImage;
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", '/benefit/management', true); // true is asynchronous
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onload = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          console.log(xhttp.responseText);
+          document.getElementById("benefitTxt").innerHTML = xhttp.responseText;
+        } else {
+          console.error(xhttp.statusText);
+        }
+      };
+      xhttp.send(benParams);
+      return false;
+    }
+  </script>
+
+
+
+
+
+
+    <!--end-->
   </body>
 
 </html>
