@@ -36,11 +36,11 @@
 
     #existingPosts{
       vertical-align:top;
-      max-width: 50%;
+      max-width: 100%;
     }
 
     #messageColumn{
-      column-width: 800px;
+
     }
 
     table{
@@ -106,60 +106,81 @@
               <td>{{row[1]}}</td>
               <td>{{row[2]}}</td>
               <td>{{row[3]}}</td>
+              <td><button type="button" onclick="return deletePost({{row[0]}})">Delete</button></td>
             </tr>
          {% endfor %}
       </table>
       {%endblock%}
     </div>
-  </body>
 
-  <script>
-  $(function(){
-    $("#nav-placeholder").load("/static/navBar.html");
-  });
-  </script>
-
-  <script>
-    function loadPost() {
-
-      var image = document.forms["uploadImage"]["fileInput"].files.item(0).name;
-      var title = document.forms["addBlogPost"]["title"].value;
-      var message = document.forms["addBlogPost"]["message"].value;
-      params = 'title='+title+'&message='+message+'&image='+image;
-      var xhttp = new XMLHttpRequest();
-      xhttp.open("POST", '/blog/management', true); // true is asynchronous
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.onload = function() {
-        if (xhttp.readyState === 4 && xhttp.status === 200) {
-          console.log(xhttp.responseText);
-          document.getElementById("txt").innerHTML = xhttp.responseText;
-        } else {
-          console.error(xhttp.statusText);
-        }
-      };
-      xhttp.send(params);
-      return false;
-    }
-  </script>
-
-  <script>
-
-      $(function() {
-        $('#uploadFileButton').click(function() {
-            var form_data = new FormData($('#uploadImage')[0]);
-            $.ajax({
-                type: 'POST',
-                url: '/blog/management/media',
-                data: form_data,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    document.getElementById("uploadMessage").innerHTML = "Upload Complete";
-                },
-            });
-        });
+    <script>
+    $(function(){
+      $("#nav-placeholder").load("/static/navBar.html");
     });
+    </script>
 
-  </script>
+    <script>
+      function loadPost() {
+        var image = document.forms["uploadImage"]["fileInput"].files.item(0).name;
+        var title = document.forms["addBlogPost"]["title"].value;
+        var message = document.forms["addBlogPost"]["message"].value;
+        params = 'title='+title+'&message='+message+'&image='+image;
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", '/blog/management', true); // true is asynchronous
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.onload = function() {
+          if (xhttp.readyState === 4 && xhttp.status === 200) {
+            console.log(xhttp.responseText);
+            document.getElementById("txt").innerHTML = xhttp.responseText;
+          } else {
+            console.error(xhttp.statusText);
+          }
+        };
+        xhttp.send(params);
+        return false;
+      }
+    </script>
+
+    <script>
+
+        $(function() {
+          $('#uploadFileButton').click(function() {
+              var form_data = new FormData($('#uploadImage')[0]);
+              $.ajax({
+                  type: 'POST',
+                  url: '/blog/management/media',
+                  data: form_data,
+                  contentType: false,
+                  cache: false,
+                  processData: false,
+                  success: function(data) {
+                      document.getElementById("uploadMessage").innerHTML = "✓";
+                  },
+              });
+          });
+      });
+
+    </script>
+
+    <script>
+      function deletePost(id) {
+        console.log(id);
+        params = 'id='+id;
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", '/blog/management/delete', true); // true is asynchronous
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.onload = function() {
+          if (xhttp.readyState === 4 && xhttp.status === 200) {
+            console.log(xhttp.responseText);
+          } else {
+            console.error(xhttp.statusText);
+          }
+        };
+        xhttp.send(params);
+        location.reload();
+        return false;
+      }
+    </script>
+
+  </body>
 </html>
