@@ -12,6 +12,15 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'svg'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+def getBlogPosts():
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    query = "SELECT * FROM tblBlogPosts"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    connection.close()
+    return data
+
 @app.route("/")
 def index():
     if request.method =='GET':
@@ -24,24 +33,12 @@ def contact():
 @app.route("/blog")
 def blog():
     if request.method =='GET':
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "SELECT * FROM tblBlogPosts"
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-        return render_template('blog.html', data=data)
+        return render_template('blog.html', data=getBlogPosts())
 
 @app.route("/blog/management", methods = ['POST','GET'])
 def addBlogPost():
     if request.method =='GET':
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "SELECT * FROM tblBlogPosts"
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-        return render_template('blogManagement.html', data=data)
+        return render_template('blogManagement.html', data=getBlogPosts())
     if request.method =='POST':
         title = request.form.get('title', default="Error")
         message = request.form.get('message', default="Error")
