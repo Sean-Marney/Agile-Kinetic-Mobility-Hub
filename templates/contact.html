@@ -17,7 +17,6 @@
           <p class ="contact-text">Fill in this form to get in contact with us regarding any enquiries you may have</p>
 
           <div class="info">
-            <h1>hello</h1>
             <div class="information">
               <li>Agile Kinetic Address Placeholder</li>
             </div>
@@ -27,6 +26,26 @@
             <div class="information">
               <li>Agile Kinetic Phone Placeholder</li>
             </div>
+            <div class="social-media">
+              <h3 class="social-title">Follow us on social media!</h3>
+              <div class="facebook-btn">
+                <button id="redirect-facebook">Facebook</button>
+              </div>
+              <div class="twitter-btn">
+                <button id="redirect-twitter">Twitter</button>
+              </div>
+
+              <script>
+                document.querySelector('#redirect-facebook')
+                .addEventListener('click', () => {
+                  window.location.href = 'https://www.facebook.com/AgileKinetic';
+                });
+                document.querySelector('#redirect-twitter')
+                .addEventListener('click', () => {
+                  window.location.href = 'https://twitter.com/agilekinetic';
+                });
+              </script>
+          </div>
           </div>
         </div>
         <div class="contact-form">
