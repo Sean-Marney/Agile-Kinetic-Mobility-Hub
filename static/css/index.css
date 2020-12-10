@@ -139,8 +139,6 @@
 
 }
 
-
-
 #introText{
   color: #003B66;
   margin-left: 17%;
@@ -148,8 +146,37 @@
   font-size: 3vw;
   float:left;
   padding-top: 8%;
-  margin-bottom: 10%
+  margin-bottom: 10%;
+
 }
+
+@media (min-width:0px) and (max-width:900px) {
+  #introText{
+    width:60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-size: 30px;
+  }
+
+  .navbarLinks{
+    display: none;
+  }
+
+  .icons{
+    min-width: 60px;
+  }
+
+  #overview{
+    height: 330px;
+  }
+
+  #appPreview{
+    display: none;
+    margin: 0 auto;
+  }
+
+}
+
 
 #appPreview{
   margin-right: 17%;
