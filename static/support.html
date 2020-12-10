@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> Support page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Support page</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
 <img src="/static/assets/logo/mainLogo.png" alt="Agile Kinetic Logo" id="headerLogo">
   <style>
@@ -91,6 +91,9 @@ transition: all .5s ease-in;
 }
   </style>
 </head>
+<header>
+  <div id="nav-placeholder"></div>
+</header>
 <body>
   <div class= "container-fluid">
     <h2> Frequently Asked Questions (FAQs)</h2>
@@ -138,28 +141,18 @@ transition: all .5s ease-in;
   <p>Etiam sodales lacinia diam, venenatis congue risus ullamcorper vitae. Cras vehicula enim id velit convallis, non congue magna finibus. Phasellus sed dui eget quam aliquet lobortis id a leo. Praesent vulputate felis dui, et lacinia purus bibendum vel. Phasellus sit amet mi interdum, venenatis felis vel, varius est. Fusce ut erat a velit egestas cursus eget et ex. Sed sodales blandit lectus, quis venenatis lorem pretium viverra. Sed varius, magna ac laoreet vehicula, neque nisi consequat nisi, ut suscipit felis est at libero.</p>
 </div>
 </div>
+<footer>
+  <div id="footer-placeholder"></div>
+</footer>
+  <script src="js/support.js" charset="utf-8"></script>
+
+  <!--copied from index page-->
   <script>
-  var acc = document.getElementsByClassName('accordion');
-  var i;
-  var len = acc.length;
-  for(i  = 0; i < len; i++ ) {
-    acc[i] .addEventListener('click', function () {
-      this.classList.toggle('active');
-      var panel = this.nextElementSibling;
-      if (panel.style.maxHeight)  {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
-    })
-  }
+  $(function(){
+    $("#nav-placeholder").load("navBar.html");
+    $("#footer-placeholder").load("footer.html");
+  });
 
   </script>
 </body>
-
-<script>
-$(function(){
-  $("#nav-placeholder").load("navBar.html");
-});
-</script>
 </html>
