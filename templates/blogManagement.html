@@ -73,7 +73,7 @@
     <div id="newBlogPost" class="widget">
       <h2>Add a new blog post</h2>
 
-      <form id="uploadImage" method=post enctype=multipart/form-data>
+      <form id="uploadImage"  method=post enctype=multipart/form-data>
         <label>Image: </label>
         <input type=file name=file id="fileInput">
         <button id="uploadFileButton" type="button">Upload</button>
@@ -125,7 +125,7 @@
         <span id='uploadBenefit'></span>
       </form>
 
-      <form id='addBenefit' onsubmit="return loadBenefit()">
+      <form id='addBenefit' onsubmit="return sendBenefit()">
         <br><label>Title: <input type = "text" name = "benefitTitle" id="benefitTitleInput"><br></label><br>
         <textarea name="benefitMessage" rows="5" cols="65"></textarea><br>
         <button id="addBenefitPostButton" type = "submit"> Add Benefit </button>
@@ -138,10 +138,6 @@
     $(function(){
       $("#nav-placeholder").load("/static/navBar.html");
     </script>
-
-
-
-
 
     <script>
       function loadPost() {
@@ -167,24 +163,42 @@
 
     <script>
 
-        $(function() {
-          $('#uploadFileButton').click(function() {
-              var form_data = new FormData($('#uploadImage')[0]);
-              $.ajax({
-                  type: 'POST',
-                  url: '/blog/management/media',
-                  data: form_data,
-                  contentType: false,
-                  cache: false,
-                  processData: false,
-                  success: function(data) {
-                      document.getElementById("uploadMessage").innerHTML = "✓";
-                  },
-              });
+    $(function() {
+      $('#uploadFileButton').click(function() {
+          var form_data = new FormData($('#uploadImage')[0]);
+          $.ajax({
+              type: 'POST',
+              url: '/blog/management/media',
+              data: form_data,
+              contentType: false,
+              cache: false,
+              processData: false,
+              success: function(data) {
+                  document.getElementById("uploadMessage").innerHTML = "✓";
+              },
           });
       });
+  });
 
-    </script>
+  //send benefit images to 'uploads' folder
+       $(function() {
+         $('#benefitUploadFileButton').click(function() {
+             var form_data = new FormData($('#benefitImageUpload')[0]);
+             $.ajax({
+                 type: 'POST',
+                 url: '/blog/management/media',
+                 data: form_data,
+                 contentType: false,
+                 cache: false,
+                 processData: false,
+                 success: function(data) {
+                     document.getElementById("uploadBenefit").innerHTML = "✓";
+                 },
+             });
+         });
+     });
+
+  </script>
 
     <script>
       function deletePost(id) {
@@ -209,7 +223,7 @@
     <!--alans-->
 
     <script>
-  //Ajax request sending benefit form data to server WORKING
+  //Ajax request sending benefit form data to server - modified from will's code
     function sendBenefit() {
       var benImage = document.forms["benefitImageUpload"]["benefitInput"].files.item(0).name;
       var benTitle = document.forms["addBenefit"]["benefitTitle"].value;
@@ -229,14 +243,8 @@
       xhttp.send(benParams);
       return false;
     }
+
   </script>
-
-
-
-
-
-
-    <!--end-->
   </body>
 
 </html>
