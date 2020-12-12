@@ -10,7 +10,10 @@
 
 #summary{
   background-color: #22B2B8;
-  height:52vh;
+  display: flex;
+  padding: 1%;
+  overflow: visible;
+  flex-wrap: wrap;
 }
 
 #benefits{
@@ -135,6 +138,11 @@
 
 }
 
+
+
+
+
+
 #introText{
   color: #003B66;
   margin-left: 17%;
@@ -143,7 +151,63 @@
   float:left;
   padding-top: 8%;
   margin-bottom: 10%;
+}
 
+#summaryTitle{
+  font-size: 3vw;
+  margin-bottom: 6%;
+}
+
+.summaryText{
+  font-size: 1.5vw;
+}
+
+#appPreview{
+  margin-right: 8%;
+  float:right;
+  width: 25%;
+  padding-top: 1%;
+  position: absolute;
+}
+
+#left{
+  color: white;
+  font-size: 25px;
+  width: 50%;
+  padding: 2%;
+  min-width: 450px;
+}
+
+#right{
+  text-align: right;
+  width: 50%;
+}
+
+#mobilityHubLogo{
+  width: 22%;
+  padding: 3%;
+  margin-right: 10%;
+}
+
+#downloadButtons{
+  width: 80%;
+  margin-left: 7%;
+}
+
+.downloadButton{
+  background-color: #FFAC00;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  text-align: left;
+  font-size: 1.5vw;
+  width: 100%;
+  display: block;
+}
+
+#downloadAppIOS{
+  margin-bottom: 2%;
 }
 
 @media (min-width:0px) and (max-width:900px) {
@@ -171,66 +235,50 @@
     margin: 0 auto;
   }
 
+  #mobilityHubLogo{
+    display: none;
+  }
+
+  #left, #right{
+    width: 100%;
+    margin-right: 10%;
+    margin-left: 10%;
+    min-width: 0;
+  }
+
+  #summary{
+    justify-content: center;
+  }
+
+  #summaryTitle{
+    font-size: 25px;
+  }
+
+  .summaryText,.downloadButton{
+    font-size: 15px;
+  }
+
+  .downloadButton{
+    width: 100%;
+    margin-bottom: 5%;
+  }
+
+  #downloadButtons{
+    width: 80%;
+    margin: auto;
+  }
+
 }
 
 
-#appPreview{
-  margin-right: 17%;
-  float:right;
-  width: 25%;
-  padding-top: 1%;
-}
-
-#mobilityHubLogo{
-  float: right;
-  position: absolute;
-  right: 0;
-  width: 9%;
-  margin-right: 5%;
-  margin-top: 1%;
-}
 
 
-#summaryTitle{
-  padding-bottom: 30px;
-  font-size: 3vw;
-}
 
-.summaryText{
-  font-size: 1.5vw;
-}
 
-#summaryTitleAndText{
-  color: white;
-  font-size: 25px;
-  max-width: 50%;
-  float:left;
-  margin-left: 4%;
-  margin-top: 4%;
-}
 
-#downloadButtons{
-  width: 36%;
-  float:right;
-  margin-right: 5%;
-  margin-top: 0.9%
-}
 
-.downloadButton{
-  background-color: #FFAC00;
-  width: 100%;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  color: white;
-  text-align: left;
-  font-size: 1.5vw;
-  display: block;
-}
 
-#downloadAppIOS{
-  margin-bottom: 2%;
-}
+
 
 ul {
   list-style: none;
