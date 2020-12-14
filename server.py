@@ -30,12 +30,8 @@ def index():
         return render_template("index.html", code=302, benData = getBenefit())
 
 #renders contact page
-@app.route("/contact", methods=['GET, POST'])
+@app.route("/contact")
 def contact():
-    form = ContactForm()
-    if form.is_submitted():
-        result = request.form
-        return render_template('contact.html', result=result)
     return render_template("contact.html")
 
 #renders blog posts page
