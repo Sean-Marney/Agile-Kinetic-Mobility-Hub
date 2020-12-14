@@ -115,6 +115,7 @@
 
     <!-- ALAN'S STUFF -->
 
+
     <div id="newBenefit" class="widget">
       <h2>Add a patient benefit </h2>
 
@@ -131,12 +132,37 @@
         <button id="addBenefitPostButton" type = "submit"> Add Benefit </button>
       </form>
       <span id='benefitTxt'></span>
+    </div>
+
+    <div id="existingBenefit" class="widget">
+      <h2>Existing Benefits</h2>
+      {%block benefitBlock%}
+        <table>
+           <thead>
+              <td>ID</td>
+              <td>Title</td>
+              <td id="messageColumn">Message</td>
+           </thead>
+
+           {% for row in benData %}
+              <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td><button type="button" onclick="return deleteBenefit({{row[0]}})">Delete</button></td>
+              </tr>
+           {% endfor %}
+        </table>
+      {%endblock%}
+    </div>
 
     <!-- END-->
 
     <script>
-    $(function(){
-      $("#nav-placeholder").load("/static/navBar.html");
+
+      $(function(){
+        $("#nav-placeholder").load("../static/navBar.html");
+      });
     </script>
 
     <script>
@@ -180,7 +206,7 @@
       });
   });
 
-  //send benefit images to 'uploads' folder
+  //send benefit images to 'uploads' folder - modified from above function
        $(function() {
          $('#benefitUploadFileButton').click(function() {
              var form_data = new FormData($('#benefitImageUpload')[0]);
@@ -218,9 +244,27 @@
         location.reload();
         return false;
       }
+
+///////////////////////////////////////////////////////////////////////////////
+      function deleteBenefit(id) {
+        console.log(id);
+        params = 'id='+id;
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", '/benefit/delete', true); // true is asynchronous
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.onload = function() {
+          if (xhttp.readyState === 4 && xhttp.status === 200) {
+            console.log(xhttp.responseText);
+          } else {
+            console.error(xhttp.statusText);
+          }
+        };
+        xhttp.send(params);
+        location.reload();
+        return false;
+      }
     </script>
 
-    <!--alans-->
 
     <script>
   //Ajax request sending benefit form data to server - modified from will's code

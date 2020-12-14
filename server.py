@@ -23,11 +23,13 @@ def getBlogPosts():
     connection.close()
     return data
 
+#renders home page
 @app.route("/")
 def index():
     if request.method =='GET':
-        return redirect("/static/index.html", code=302)
+        return render_template("index.html", code=302, benData = getBenefit())
 
+#renders contact page
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
@@ -38,11 +40,13 @@ def blog():
     if request.method =='GET':
         return render_template('blog.html', data=getBlogPosts())
 
+#renders blog management page
 @app.route("/blog/management", methods = ['POST','GET'])
 def blogPosts():
     if request.method =='GET':
-        return render_template('blogManagement.html', data=getBlogPosts())
+        return render_template('blogManagement.html', data=getBlogPosts(), benData = getBenefit())
 
+#adds new blog post data to database
 @app.route("/blog/management/add", methods = ['POST','GET'])
 def addBlogPost():
     if request.method =='POST':
@@ -66,7 +70,7 @@ def addBlogPost():
             connection.close()
             return outputMessage
 
-
+#deletes blog post
 @app.route("/blog/management/delete", methods = ['POST','GET'])
 def deleteBlogPost():
     if request.method =='POST':
@@ -88,6 +92,7 @@ def deleteBlogPost():
             connection.close()
             return outputMessage
 
+
 #code to upload file to server
 #amended from Flask Documentation
 #accessed 05/12/2020
@@ -97,6 +102,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+#adds image to 'uploads' file
 @app.route("/blog/management/media", methods = ['POST','GET'])
 def addBlogImage():
     if request.method == 'POST':
@@ -125,19 +131,11 @@ def uploaded_file(filename):
 #End of amended code
 
 
-#ALAN########################
+#ALan - routes for patient benefit section ammended from routes created by Will
+
+#dds mew benefit info to database
 @app.route("/benefit/management", methods = ['POST'])
 def addBenefit():
-    if request.method =='GET':
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        query = "SELECT * FROM tblBenefits"
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-
-
-    #POST SECTION OF ROUTE WORKING ACCORDING TO MY TEST
     if request.method =='POST':
         benTitle = request.form.get('title', default="Error")
         benMessage = request.form.get('message', default="Error")
@@ -158,8 +156,41 @@ def addBenefit():
             connection.close()
             return outputMessage
 
-############################################
 
+#returns benefit data from database
+@app.route('/benefit/return', methods = ['GET'])
+def getBenefit():
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+    query = "SELECT * FROM tblBenefits"
+    cursor.execute(query)
+    benData = cursor.fetchall()
+    connection.close()
+    return benData
+
+
+#deletes benefit from database
+@app.route('/benefit/delete', methods =['POST'])
+def deleteBenefit():
+    if request.method =='POST':
+        benId = request.form.get('id', default="Error")
+        print("Delete benefit...")
+        try:
+            connection = sqlite3.connect(DATABASE)
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM tblBenefits WHERE id=?",[benId])
+            connection.commit()
+            print("Delete successful")
+            outputBenMessage = "Benefit deleted successfully"
+        except Exception as e:
+            connection.rollback()
+            print("Deletion of benefit failed, rollback requested: " + str(e))
+            outputMessage = "Failed to delete benefit"
+        finally:
+            connection.close()
+            return outputBenMessage
+
+#end of patient benefit routes
 
 if __name__ == "__main__":
     app.run(debug=True)
