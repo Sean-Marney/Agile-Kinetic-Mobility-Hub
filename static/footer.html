@@ -2,7 +2,6 @@
 <html lang="en">
 
 <style>
-
   *{
     font-family: 'Futura-PT-Book';
     font-weight:normal;
@@ -14,64 +13,89 @@
       color: white;
   }
 
-  .footerCol{
-    width: 20%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    border-left: thin solid white;
-    position: relative;
+  #footerParent{
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  .colLogo {
+  #footerParent div{
     width: 25%;
-    padding: 5%;
+    padding: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
   }
 
-  .footerLinks{
+  .footerChild{
     margin: 0;
-    padding-left: 1.4%;
     font-size: 1.3vw;
+    border-left: thin solid white;
   }
 
-  #logoMark{
+  .footerChild ul{
+    list-style-type: none;
+  }
+
+  #logo{
     width: 50%;
     display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+  }
+
+  .followUsTitle{
+    font-size: 1vw;
+  }
+
+  #socialLinks{
+    padding-left: 0;
+    padding-top: 1%;
+  }
+
+  .socialIcon{
+    width: 12%;
+    padding-right: 4%;
   }
 
   .copyright{
     background-color: #003052;
     text-align: center;
-    margin: 0;
-    padding-top: 0.8%;
-    padding-bottom: 0.1%;
   }
 
-  .socialIcon{
-    width: 13%;
-    padding-right: 4%;
+  .copyright p{
+    padding: 12px;
   }
 
-  #socialLinks{
-    padding-left: 0;
-  }
+  @media screen and (max-width:900px) {
 
-  .footerCol{
-    padding-left: 2%;
-  }
+    #footerParent div{
+      font-size: 20px;
+      width: 100%;
+      margin-left: 15%;
+      margin-right: 15%;
+      text-align: center;
+    }
 
-  .vertCentre{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+    #logo{
+      width: 100px;
+    }
 
-  .followUsTitle{
-    font-size: 1.5vw;
-    padding-bottom: 1%;
-  }
+    .footerChild{
+      border-bottom: thin solid white;
+      border-left: none;
+    }
 
+    .internalLinks{
+      padding-left: 0;
+      margin: 0 auto;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+    #socialChild{
+      border-bottom: none;
+    }
+
+  }
 
 </style>
 
@@ -79,52 +103,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="/static/fonts/futura-pt-book/stylesheet.css" rel="stylesheet">
   <title>Footer</title>
 </head>
 
 <body>
   <footer>
 
-    <div class="row">
+    <div id="footerParent">
 
-      <div class="colLogo">
-        <img src="/static/assets/logo/logo_mark.svg" id="logoMark">
+      <div>
+        <img src="/static/assets/logo/logo_mark.svg" id="logo">
       </div>
 
-      <div class="footerCol">
-        <ul class="footerLinks vertCentre">
+      <div class="footerChild">
+        <ul class="internalLinks">
           <li><a>About Us</a></li>
           <li><a>Blog</a></li>
           <li><a>Login</a></li>
         </ul>
       </div>
 
-      <div class="footerCol">
-        <ul class="footerLinks vertCentre">
+      <div class="footerChild">
+        <ul class="internalLinks">
           <li><a>Terms of Service</a></li>
           <li><a>Privacy Policy</a></li>
           <li><a>Site Map</a></li>
         </ul>
       </div>
 
-      <div class="footerCol">
-        <div class=vertCentre>
-          <h4 id="followUsTitle">Follow us</h4>
+      <div class="footerChild" id="socialChild">
+        <section>
+          <h3 id="followUsTitle">Follow us</h3>
           <ul id="socialLinks">
             <a href="https://www.facebook.com/AgileKinetic/"><img src="/static/assets/icons/social/facebook.png" class="socialIcon"></a>
             <a href="https://twitter.com/agilekinetic?lang=en"><img src="/static/assets/icons/social/twitter.png" class="socialIcon"></a>
             <a href="https://www.instagram.com/agile_kinetic/"><img src="/static/assets/icons/social/instagram.png" class="socialIcon"></a>
           </ul>
-        </div>
+        </section>
       </div>
 
-    </div>
-
-    <div class="copyright">
-      <p>Agile Kinetic Ltd 2020. All rights reserved.</p>
-    <div>
-
   </footer>
+
+  <div class="copyright">
+    <p>Agile Kinetic Ltd 2020. All rights reserved.</p>
+  <div>
+
 </body>
 
 </html>

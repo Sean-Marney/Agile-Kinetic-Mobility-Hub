@@ -247,14 +247,17 @@
     margin-right: 10%;
     margin-left: 10%;
     min-width: 0;
+
   }
 
   #summary{
     justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
 
   #summaryTitle{
-    font-size: 25px;
+    font-size: 30px;
   }
 
   .summaryText,.downloadButton{
@@ -268,7 +271,8 @@
 
   #downloadButtons{
     width: 80%;
-    margin: auto;
+    margin-left: 10px;
+    margin-top: 0;
   }
 
 }
