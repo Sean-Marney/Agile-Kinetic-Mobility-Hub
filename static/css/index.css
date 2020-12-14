@@ -143,11 +143,8 @@
 
 @media screen and (min-width: 1200px){
   #patient-section {
-    background-position: center +20%;
+    background-position: center +25%;
   }
-
-
-
 }
 
 
@@ -290,6 +287,10 @@
 
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 ul {
   list-style: none;
   float: left;
@@ -339,4 +340,10 @@ color: #00BFFF;
 
 .icons{
   position: absolute;
+}
+
+.title-container{
+  margin-top: 1%;
+  margin-left: 7%;
+  margin-right: 2%;
 }
