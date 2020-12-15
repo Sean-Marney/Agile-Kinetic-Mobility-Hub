@@ -17,6 +17,8 @@
   width: 100%;
 }
 
+
+
 #benefits{
   background-color: #003B66;
   height:80vh;
@@ -51,6 +53,7 @@
   background-position: center calc(100%-15px) ;
   display: inline-block;
   width: 100%;
+
 }
 
 
@@ -78,10 +81,10 @@
 .patientBenefit {
    width: 25%;
    margin: .5em;
-   border: 1px solid  #003B66;
+   border: 1px groove  #003B66;
    border-radius: 5px;
-   background-color:  rgba(253, 254, 254, 0.5) ;
-   box-shadow: 0 0 5px;
+   background-color:  rgba(253, 254, 254, 0.4) ;
+   box-shadow: 0 0 3px;
    overflow-x: hidden;
    overflow-y: hidden;
 }
@@ -285,6 +288,10 @@
 
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 ul {
   list-style: none;
   float: left;
