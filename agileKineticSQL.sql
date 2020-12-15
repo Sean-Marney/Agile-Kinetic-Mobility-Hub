@@ -23,6 +23,6 @@ CREATE TABLE IF NOT EXISTS 'tblContact' (
 	"companytitle"	TEXT,
 	"companydesription"	TEXT,
 	"workemail"	TEXT,
-	"phonenumber"	INTEGER,
+	"phonenumber"	TEXT,
 	"message"	TEXT
 )
