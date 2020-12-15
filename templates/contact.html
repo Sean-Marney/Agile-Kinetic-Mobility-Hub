@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="../static/css/contact.css">
     <title>Contact Us</title>
   </head>
   <header>
     <div id="nav-placeholder"></div>
   </header>
   <body>
+
     <div class="container-form">
       <div class="form">
         <div class="contact-info">
@@ -48,39 +49,68 @@
           </div>
           </div>
         </div>
-        <div class="contact-form">
 
-          <form action="contact.html" method="post">
+        <div class="contact-form">
+          <form  method="post" id="contact-form" onsubmit=" return sendContact()">
             <h3 class="contact-title">Contact Us</h3>
             <div class="input-container">
-              <input type="name" name="name" class="input" placeholder="First Name">
+              <input type="text" name="name" class="input" placeholder="First Name" id="first-name">
             </div>
             <div class="input-container">
-              <input type="last-name" name="last-name" class="input" placeholder="Last Name">
+              <input type="text" name="last-name" class="input" placeholder="Last Name" id="last-name">
             </div>
             <div class="input-container">
-              <input type="job-title" name="job-title" class="input" placeholder="Job Title">
+              <input type="text" name="job-title" class="input" placeholder="Job Title" id="job-title">
             </div>
             <div class="input-container">
-              <input type="company-title" name="company-title" class="input" placeholder="Company Title">
+              <input type="text" name="company-title" class="input" placeholder="Company Title" id="company-title">
             </div>
             <div class="input-container">
-              <input type="company-description" name="company-description" class="input" placeholder="Company Description">
+              <input type="text" name="company-description" class="input" placeholder="Company Description" id="company-description">
             </div>
             <div class="input-container">
-              <input type="email" name="email" class="input" placeholder="Work Email">
+              <input type="email" name="email" class="input" placeholder="Work Email" id="work-email">
             </div>
             <div class="input-container">
-              <input type="phone" name="phone" class="input" placeholder="Phone Number">
+              <input type="number" name="phone" class="input" placeholder="Phone Number" id="phone-number">
             </div>
             <div class="input-container textarea">
-              <textarea name="message" class="input" placeholder="What can we help with?"></textarea>
+              <textarea name="message" class="input" placeholder="What can we help with?" id="message"></textarea>
             </div>
-            <input type="submit" value="Send" class="contact-btn" />
+            <input type="submit" value="Send" class="contact-btn"/>
+            <span id="contact-response"></span>
           </form>
         </div>
       </div>
     </div>
+
+    <script>
+
+    function sendContact() {
+      var firstName = document.forms["contact-form"]["name"].value;
+      var lastName = document.forms["contact-form"]["last-name"].value;
+      var jobTitle = document.forms["contact-form"]["job-title"].value;
+      var companyTitle = document.forms["contact-form"]["company-title"].value;
+      var companyDescription = document.forms["contact-form"]["company-description"].value;
+      var workEmail = document.forms["contact-form"]["email"].value;
+      var phoneNumber = document.forms["contact-form"]["phone"].value;
+      var message = document.forms["contact-form"]["message"].value;
+      contactData = 'first-name='+firstName+'&last-name='+lastName+'&job-title='+jobTitle+'&company-title='+companyTitle+'&company-description='+companyDescription+'&work-email='+workEmail+'&phone-number='+phoneNumber+'&message='+message;
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST",'/contact', true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onload = function() {
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+          console.log(xhttp.responseText);
+          document.getElementById("contact-response").innerHTML = xhttp.responseText;
+        } else {
+          console.error(xhttp.statusText);
+        }
+      };
+      xhttp.send(contactData);
+      return false;
+    }
+    </script>
 
     <script>
     $(function(){

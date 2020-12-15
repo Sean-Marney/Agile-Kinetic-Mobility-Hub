@@ -30,9 +30,37 @@ def index():
         return render_template("index.html", code=302, benData = getBenefit())
 
 #renders contact page
-@app.route("/contact")
+@app.route("/contact",  methods = ['GET','POST'])
 def contact():
-    return render_template("contact.html")
+    if request.method == 'GET':
+        return render_template("contact.html")
+
+    #####add contact form data to databse
+    if request.method =='POST':
+      firstName = request.form.get('name', default = "Error")
+      lastName = request.form.get('last-name', default="Error")
+      jobTitle = request.form.get('job-title', default="Error")
+      companyTitle = request.form.get('company-title', default="Error")
+      companyDescription = request.form.get('company-description', default="Error")
+      workEmail = request.form.get('email', default="Error")
+      phoneNumber = request.form.get('phone', default="Error")
+      message = request.form.get('message', default = "Error")
+      print("inserting form data into database......")
+      try:
+            connection = sqlite3.connect(DATABASE)
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO tblContact ('firstname', 'lastname', 'jobtitle', 'companytitle', 'companydesription', 'workemail', 'phonenumber', 'message') VALUES (?,?,?,?,?,?,?,?)", ( firstName,  lastName, jobTitle ,companyTitle, companyDescription, workEmail, phoneNumber,  message ))
+            connection.commit()
+            print("Insertion Successful.")
+            ("Contact form data added successfully")
+            outputMessage = "Thanks. We'll be in touch shortly."
+      except Exception as e:
+            connection.rollback()
+            print("Falied to add contact form data, rollback requested: " + str(e))
+            outputMessage = "Failed to send message. Please try again."
+      finally:
+            connection.close()
+            return outputMessage
 
 #renders blog posts page
 @app.route("/blog")

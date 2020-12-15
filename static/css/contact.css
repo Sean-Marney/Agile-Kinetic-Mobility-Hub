@@ -35,8 +35,9 @@
 }
 
 .contact-form{
-  background-color: #22B2B8
+  background-color: #22B2B8;
   /*position: relative;*/
+
 }
 
 form{
@@ -140,4 +141,9 @@ textarea.input{
   padding: 10px;
   width: 50%;
   margin: auto;
+}
+
+#contact-response {
+  width: 100%
+  border: 1px solid red;
 }

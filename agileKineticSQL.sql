@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS 'tblBlogPosts' (
 	"title"	TEXT,
 	"message"	TEXT,
 	"image"	TEXT
-);
+)
 
 
 CREATE TABLE IF NOT EXISTS 'tblBenefits' (
@@ -12,4 +12,17 @@ CREATE TABLE IF NOT EXISTS 'tblBenefits' (
 	"title"	TEXT,
 	"message"	TEXT,
 	"image"	TEXT
-);
+)
+
+
+CREATE TABLE IF NOT EXISTS 'tblContact' (
+  "id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"firstname"	TEXT,
+	"lastname"	TEXT,
+	"jobtitle"	TEXT,
+	"companytitle"	TEXT,
+	"companydesription"	TEXT,
+	"workemail"	TEXT,
+	"phonenumber"	INTEGER,
+	"message"	TEXT
+)

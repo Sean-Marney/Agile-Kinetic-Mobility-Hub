@@ -10,13 +10,44 @@
       font-size: 20px;
     }
 
+    #site-management-bock-container{
+      display: flex;
+      flex-wrap: wrap;
+
+    }
+
+    #existingPosts, #existingBenefit{
+      width: 100%;
+    /*  display: flex;*/
+
+    }
+
+
+
+    .block-item {
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .existing-title {
+      text-decoration: underline #FFCA60;
+    }
+
+    .dynamic-message {
+      word-wrap: break-word;
+      color: #FFCA60 ;
+      padding: 6px;
+      margin-top: 3px;
+
+
+    }
+
     .widget{
       background-color: #22B2B8;
       border-radius: 5px;
       margin: 10px;
       width:auto;
       color: white;
-      display: inline-block;
       padding: 20px;
     }
 
@@ -40,7 +71,7 @@
     }
 
     #messageColumn{
-
+      color: #FFCA60;
     }
 
     table{
@@ -52,6 +83,23 @@
       margin-right: 20px;
       margin-bottom: 20px;
     }
+
+    #newBenefit, #newBlogPost{
+      width: 40%;
+      justify-content: space-between;
+
+      }
+
+  textarea {
+  width: 100%;
+}
+
+  @media screen and (max-width: 900px) {
+    #newBenefit, #newBlogPost{
+      width: 100%;
+
+      }
+  }
 
   </style>
 
@@ -69,94 +117,104 @@
     <div>
   </header>
 
-  <body>
-    <div id="newBlogPost" class="widget">
-      <h2>Add a new blog post</h2>
 
-      <form id="uploadImage"  method=post enctype=multipart/form-data>
-        <label>Image: </label>
-        <input type=file name=file id="fileInput">
-        <button id="uploadFileButton" type="button">Upload</button>
-        <span id='uploadMessage'></span>
-      </form>
-
-      <form id='addBlogPost' onsubmit="return loadPost()">
-        <br><label>Title: <input type = "text" name = "title" id="titleInput"><br></label><br>
-        <textarea name="message" rows="5" cols="65"></textarea><br>
-        <button id="addPostButton" type = "submit"> Add Post </button>
-      </form>
-      <span id='txt'></span>
-    </div>
+    <body>
+      <div id="site-management-bock-container">
 
 
-    <div id="existingPosts" class="widget">
-      <h2>Existing Posts</h2>
-      {%block mainBlock%}
-      <table>
-         <thead>
-            <td>ID</td>
-            <td>Date</td>
-            <td>Title</td>
-            <td id="messageColumn">Message</td>
-         </thead>
+        <div id="existingPosts" class="widget"  class="site-block">
+          <h2 class="block-item">Existing Blog Posts</h2>
+          {%block mainBlock%}
+          <table class="block-item">
+             <thead>
+                <td class="existing-title">ID</td>
+                <td class="existing-title">Date</td>
+                <td class="existing-title">Title</td>
+                <td id="messageColumn">Message</td>
+             </thead>
 
-         {% for row in data %}
-            <tr>
-              <td>{{row[0]}}</td>
-              <td>{{row[1]}}</td>
-              <td>{{row[2]}}</td>
-              <td>{{row[3]}}</td>
-              <td><button type="button" onclick="return deletePost({{row[0]}})">Delete</button></td>
-            </tr>
-         {% endfor %}
-      </table>
-      {%endblock%}
-    </div>
+             {% for row in data %}
+                <tr>
+                  <td>{{row[0]}}</td>
+                  <td>{{row[1]}}</td>
+                  <td>{{row[2]}}</td>
+                  <td class="dynamic-message">{{row[3]}}</td>
+                  <td><button type="button" onclick="return deletePost({{row[0]}})">Delete</button></td>
+                </tr>
+             {% endfor %}
+          </table>
+          {%endblock%}
+        </div>
 
-    <!-- ALAN'S STUFF -->
+        <div id="existingBenefit" class="widget" class="site-block">
+          <h2 class="block-item">Existing Benefits</h2>
+          {%block benefitBlock%}
+            <table class="block-item">
+               <thead>
+                  <td class="existing-title">ID</td>
+                  <td class="existing-title">Title</td>
+                  <td id="messageColumn">Message</td>
+               </thead>
+
+               {% for row in benData %}
+                  <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td class="dynamic-message">{{row[2]}}</td>
+                    <td><button type="button" onclick="return deleteBenefit({{row[0]}})">Delete</button></td>
+                  </tr>
+               {% endfor %}
+            </table>
+          {%endblock%}
+        </div>
+
+        <div id="newBlogPost" class="widget" >
+          <h2 class="block-item">Add a new blog post</h2>
+
+          <form id="uploadImage"  method=post enctype=multipart/form-data class="block-item">
+            <label>Image: </label>
+            <input type=file name=file id="fileInput">
+            <button id="uploadFileButton" type="button">Upload</button>
+            <span id='uploadMessage'></span>
+          </form>
+
+          <form id='addBlogPost' onsubmit="return loadPost()" class="block-item">
+            <br><label>Title: <input type = "text" name = "title" id="titleInput"><br></label><br>
+            <textarea name="message" rows="5" cols="65" class="block-item"></textarea><br>
+            <button id="addPostButton" type = "submit"> Add Post </button>
+          </form>
+          <span id='txt'></span class="block-item">
+        </div>
 
 
-    <div id="newBenefit" class="widget">
-      <h2>Add a patient benefit </h2>
 
-      <form id="benefitImageUpload" method=post enctype=multipart/form-data>
-        <label>Image: </label>
-        <input type=file name=file id="benefitInput">
-        <button id="benefitUploadFileButton" type="button">Upload</button>
-        <span id='uploadBenefit'></span>
-      </form>
 
-      <form id='addBenefit' onsubmit="return sendBenefit()">
-        <br><label>Title: <input type = "text" name = "benefitTitle" id="benefitTitleInput"><br></label><br>
-        <textarea name="benefitMessage" rows="5" cols="65"></textarea><br>
-        <button id="addBenefitPostButton" type = "submit"> Add Benefit </button>
-      </form>
-      <span id='benefitTxt'></span>
-    </div>
+        <!-- Alan: table and forms for benefits modified from above code -->
 
-    <div id="existingBenefit" class="widget">
-      <h2>Existing Benefits</h2>
-      {%block benefitBlock%}
-        <table>
-           <thead>
-              <td>ID</td>
-              <td>Title</td>
-              <td id="messageColumn">Message</td>
-           </thead>
 
-           {% for row in benData %}
-              <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-                <td><button type="button" onclick="return deleteBenefit({{row[0]}})">Delete</button></td>
-              </tr>
-           {% endfor %}
-        </table>
-      {%endblock%}
-    </div>
+        <div id="newBenefit" class="widget">
+          <h2 class="block-item">Add a patient benefit </h2>
 
-    <!-- END-->
+          <form id="benefitImageUpload" method=post enctype=multipart/form-data class="block-item">
+            <label>Image: </label>
+            <input type=file name=file id="benefitInput">
+            <button id="benefitUploadFileButton" type="button">Upload</button>
+            <span id='uploadBenefit'></span>
+          </form>
+
+          <form id='addBenefit' onsubmit="return sendBenefit()" class="block-item">
+            <br><label>Title: <input type = "text" name = "benefitTitle" id="benefitTitleInput"><br></label><br>
+            <textarea name="benefitMessage" rows="5" cols="65" class="block-item"></textarea><br>
+            <button id="addBenefitPostButton" type = "submit"> Add Benefit </button>
+          </form>
+          <span id='benefitTxt'></span class="block-item">
+        </div>
+
+
+  </div>
+
+
+    <!-- end-->
 
     <script>
 
@@ -206,7 +264,33 @@
       });
   });
 
-  //send benefit images to 'uploads' folder - modified from above function
+  </script>
+
+  <script>
+  function deletePost(id) {
+    console.log(id);
+    params = 'id='+id;
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", '/blog/management/delete', true); // true is asynchronous
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.onload = function() {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        console.log(xhttp.responseText);
+      } else {
+        console.error(xhttp.statusText);
+      }
+    };
+    xhttp.send(params);
+    location.reload();
+    return false;
+  }
+  </script>
+
+
+<!--Alan: ajax requests fro benefits modified from above requests-->
+
+
+<script>
        $(function() {
          $('#benefitUploadFileButton').click(function() {
              var form_data = new FormData($('#benefitImageUpload')[0]);
@@ -227,25 +311,7 @@
   </script>
 
     <script>
-      function deletePost(id) {
-        console.log(id);
-        params = 'id='+id;
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", '/blog/management/delete', true); // true is asynchronous
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.onload = function() {
-          if (xhttp.readyState === 4 && xhttp.status === 200) {
-            console.log(xhttp.responseText);
-          } else {
-            console.error(xhttp.statusText);
-          }
-        };
-        xhttp.send(params);
-        location.reload();
-        return false;
-      }
 
-///////////////////////////////////////////////////////////////////////////////
       function deleteBenefit(id) {
         console.log(id);
         params = 'id='+id;
@@ -267,7 +333,7 @@
 
 
     <script>
-  //Ajax request sending benefit form data to server - modified from will's code
+
     function sendBenefit() {
       var benImage = document.forms["benefitImageUpload"]["benefitInput"].files.item(0).name;
       var benTitle = document.forms["addBenefit"]["benefitTitle"].value;
@@ -289,6 +355,7 @@
     }
 
   </script>
+  <!--end-->
   </body>
 
 </html>
